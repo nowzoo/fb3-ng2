@@ -1,0 +1,45 @@
+{
+  "name": "firebase-3-angular-2",
+  "version": "1.0.0",
+  "description": "Angular 2 helpers for Firebase SDK 3.x",
+  "main": "dist/firebase.service.js",
+  "scripts": {
+    "test": "npm run build; karma start",
+    "build": "rm -rf dist; tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nowzoo/firebase-3-angular-2.git"
+  },
+  "keywords": [
+    "firebase",
+    "angular2"
+  ],
+  "author": "Chris Carson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/nowzoo/firebase-3-angular-2/issues"
+  },
+  "homepage": "https://github.com/nowzoo/firebase-3-angular-2#readme",
+
+  "dependencies": {
+    "@angular/core": "2.0.0-rc.1",
+    "es6-shim": "^0.35.0",
+    "firebase": "^3.0.3",
+    "rxjs": "5.0.0-beta.6",
+    "zone.js": "^0.6.12"
+
+  },
+  "devDependencies": {
+
+    "jasmine-core": "^2.4.1",
+    "jasmine-spec-reporter": "^2.4.0",
+    "karma": "^0.13.15",
+    "karma-chrome-launcher": "^0.2.3",
+    "karma-jasmine": "^0.3.8",
+    "protractor": "^3.3.0",
+    "tslint": "^3.6.0",
+    "typescript": "^1.8.10",
+    "typings": "^0.8.1"
+  }
+}
