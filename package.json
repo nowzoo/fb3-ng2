@@ -2,7 +2,7 @@
   "name": "firebase-helpers",
   "version": "1.0.0",
   "description": "Angular 2 helpers for Firebase SDK 3.x",
-  "main": "dist/firebase.service.js",
+  "main": "dist/app/firebase.service.js",
   "scripts": {
     "test": "karma start",
     "build": "rm -rf dist; tsc",
