@@ -38,7 +38,11 @@ Define Firebase and this library as dependencies. The package is not yet in NPM,
 ```bash
 npm install
 ```
-Install the typings. For now, the package includes typings as file, rather than in a registry. Add `"firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"`  to `typings.json`. The file (for SystemJS apps) should look something like this:
+Install the typings. For now, the package includes typings as file, rather than in a registry. Add the line
+```js
+"firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"
+```
+ to `typings.json`. The file (for SystemJS apps) should look something like this:
 
 ```js
 {
@@ -53,9 +57,7 @@ Install the typings. For now, the package includes typings as file, rather than 
   }
 }
 ```
-
-Add the typings...
-
+Then...
 ```bash
 typings install
 ```
