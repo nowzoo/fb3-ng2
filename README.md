@@ -38,10 +38,30 @@ Define Firebase and this library as dependencies. The package is not yet in NPM,
 ```bash
 npm install
 ```
-Install the typings. For now, the package includes typings as file, rather than in a registry. Add the file to `typings.json`:
+Install the typings. For now, the package includes typings as file, rather than in a registry. Add `"firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"`  to `typings.json`. The file (for SystemJS apps) should look something like this:
+
+```js
+{
+  "globalDevDependencies": {
+    "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",
+    "jasmine": "registry:dt/jasmine#2.2.0+20160412134438",
+    "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654"
+  },
+  "globalDependencies": {
+    "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
+    "firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"
+  }
+}
+```
+
+Add the typings...
+
+```bash
+typings install
+```
 
 
- ### Usage
+### Usage
 
  Create a Firebase application
 
