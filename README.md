@@ -63,7 +63,7 @@ Then run...
 typings install
 ```
 
-Tell the build about the dependencies. For Angular CLI/SystemJS apps this is done in `angular-cli-build.js`. Add Firebase and this package:
+Tell the build about the new dependencies. For Angular CLI/SystemJS apps this is done in `angular-cli-build.js`. Add Firebase and this package:
 
 ```js
 /* global require, module */

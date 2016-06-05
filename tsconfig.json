@@ -23,8 +23,8 @@
     "rewriteTsconfig": true
   },
   "files": [
-    "src/firebase.service.spec.ts",
-    "src/firebase.service.ts",
+    "src/system-config.ts",
+    "src/typings.d.ts",
     "typings/index.d.ts"
   ]
 }
