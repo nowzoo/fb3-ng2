@@ -21,7 +21,7 @@ This library concentrates on reading data objects and arrays from Firebase 3.x S
 
 Much of this can be easily done (and is perhaps better done) via the SDK itself rather than Angular 2 abstractions. That said, I'm open to suggestions.
 
- ### Installation
+### Installation
 
 These instructions are based on installing the present library for an Angular 2 app built with the [Angular CLI](https://cli.angular.io/), which uses SystemJS. If your app uses another seed and build system, such as Webpack, you will have to modify some of the following.
 
