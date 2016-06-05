@@ -38,11 +38,12 @@ Define Firebase and this library as dependencies. The package is not yet in NPM,
 ```bash
 npm install
 ```
-Install the typings. For now, the package includes typings as file, rather than in a registry. Add the line
+Install the typings. For now, the Firebase SDK 3.x typings are included as a file in the current package, rather than in a registry. Add the line
+
 ```js
 "firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"
 ```
- to `typings.json`. The file (for SystemJS apps) should look something like this:
+ to `typings.json`. The file (for Angular CLI/SystemJS apps) should look something like this:
 
 ```js
 {
@@ -57,10 +58,38 @@ Install the typings. For now, the package includes typings as file, rather than 
   }
 }
 ```
-Then...
+Then run...
 ```bash
 typings install
 ```
+
+Tell the build about the dependencies. For Angular CLI/SystemJS apps this is done in `angular-cli-build.js`. Add Firebase and this package:
+
+```js
+/* global require, module */
+
+var Angular2App = require('angular-cli/lib/broccoli/angular2-app');
+
+module.exports = function(defaults) {
+  return new Angular2App(defaults, {
+    vendorNpmFiles: [
+      'systemjs/dist/system-polyfills.js',
+      'systemjs/dist/system.src.js',
+      'zone.js/dist/*.js',
+      'es6-shim/es6-shim.js',
+      'reflect-metadata/*.js',
+      'rxjs/**/*.js',
+      '@angular/**/*.js',
+
+      //add the following...
+      'firebase/**/*.js',
+      'firebase-helpers/dist/app/firebase-service.js'
+    ]
+  });
+};
+
+```
+
 
 
 ### Usage
