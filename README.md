@@ -2,13 +2,11 @@
 
 Angular 2 Helpers for Firebase SDK 3.x
 
-*N.B.: This library is in development, and perhaps may soon be eclipsed by the official [angularfire2 implementation of Firebase SDK 3.x](https://github.com/angular/angularfire2/issues/180). Use with care!*
+*N.B.: This is in active development, and was originally intended to be a drop-in replacement for the [official angularfire2 library](https://github.com/angular/angularfire2/) until it is updated to [Firebase SDK 3.x](https://github.com/angular/angularfire2/issues/180). Use with care!*
 
 ### Overview
 
-This library concentrates on reading data objects and arrays from
-Firebase 3.x SDK databases. The goal is to be simple to understand
-and easy to use, rather than provide a comprehensive implementation of the SDK.
+This library concentrates on reading data objects and arrays from Firebase 3.x SDK databases. The goal is to be simple to understand and easy to use, rather than provide a comprehensive Angular 2 implementation of the SDK.
 
 #### Features
  - Type definitions for SDK 3.x
@@ -21,9 +19,36 @@ and easy to use, rather than provide a comprehensive implementation of the SDK.
  - Authorization
  - Storage
 
- Much of this can be easily (and is perhaps better) done via the SDK itself rather than Angular 2 abstractions. 
+Much of this can be easily done (and is perhaps better done) via the SDK itself rather than Angular 2 abstractions. That said, I'm open to suggestions.
 
  ### Installation
+The package is not yet in NPM, so install from the GitHub repo...
+
+```js
+//your package.json...
+{
+    //stuff
+    "dependencies": {
+      //other deps...
+
+      //the Firebase SDK...
+      "firebase": "^3.0.3",
+      //this library from git...
+      "firebase-helpers": "git://github.com/nowzoo/firebase-helpers.git#master"
+    },
+    //more stuff
+}
+```
+
+```bash
+npm install
+```
+
+
+
+ ### Usage
+
+ Create a Firebase application
 
 
 
