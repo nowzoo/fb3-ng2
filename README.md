@@ -25,27 +25,20 @@ Much of this can be easily done (and is perhaps better done) via the SDK itself 
 
 These instructions are based on installing the present library for an Angular 2 app built with the [Angular CLI](https://cli.angular.io/), which uses SystemJS. If your app uses another seed and build system, such as Webpack, you will have to modify some of the following.
 
-Define Firebase and this library as dependencies. The package is not yet in NPM, so install from the GitHub repo...
+Define Firebase and this library as dependencies. The package is not yet in NPM, so install from the GitHub repo. Add the following two lines to `dependencies` in `package.json`...
 ```js
-//in package.json...
 {
-    //stuff
     "dependencies": {
-      //other deps...
-
-      //the Firebase SDK...
       "firebase": "^3.0.3",
-      //this library from git...
       "firebase-helpers": "git://github.com/nowzoo/firebase-helpers.git#master"
-    },
-    //more stuff
+    }
 }
 ```
 
 ```bash
 npm install
 ```
-
+Install the typings. For now, the package includes typings as file, rather than in a registry. Add the file to `typings.json`:
 
 
  ### Usage
