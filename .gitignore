@@ -40,8 +40,7 @@ Thumbs.db
 /typings/
 /tsd_typings/
 
-# Dist #
-/dist
+
 /public/__build__/
 /src/*/__build__/
 __build__/**

@@ -68,11 +68,7 @@ module.exports = function makeWebpackConfig() {
     cache: !isTest,
     root: root(),
     // only discover files that have those extensions
-    extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html'],
-    alias: {
-      'app': 'src/app',
-      'common': 'src/common'
-    }
+    extensions: ['', '.ts', '.js', '.json', '.css', '.scss', '.html']
   };
 
   /**
@@ -98,16 +94,9 @@ module.exports = function makeWebpackConfig() {
           ]
         },
         exclude: [isTest ? /\.(e2e)\.ts$/ : /\.(spec|e2e)\.ts$/, /node_modules\/(?!(ng2-.+))/]
-      },
-
-      // copy those assets to output
-      {test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/, loader: 'file?name=fonts/[name].[hash].[ext]?'},
+      }
 
 
-
-      // support for .html as raw text
-      // todo: change the loader to something that adds a hash to images
-      {test: /\.html$/, loader: 'raw'}
     ],
     postLoaders: [],
     noParse: [/.+zone\.js\/dist\/.+/, /.+angular2\/bundles\/.+/, /angular2-polyfills\.js/]
@@ -148,28 +137,7 @@ module.exports = function makeWebpackConfig() {
     })
   ];
 
-  if (!isTest) {
-    config.plugins.push(
-      // Generate common chunks if necessary
-      // Reference: https://webpack.github.io/docs/code-splitting.html
-      // Reference: https://webpack.github.io/docs/list-of-plugins.html#commonschunkplugin
-      // new CommonsChunkPlugin({
-      //   name: ['vendor', 'polyfills']
-      // }),
 
-      // Inject script and link tags into html files
-      // Reference: https://github.com/ampedandwired/html-webpack-plugin
-      // new HtmlWebpackPlugin({
-      //   template: './src/public/index.html',
-      //   chunksSortMode: 'dependency'
-      // }),
-
-      // Extract css files
-      // Reference: https://github.com/webpack/extract-text-webpack-plugin
-      // Disabled when in test mode or not in build mode
-      new ExtractTextPlugin('css/[name].[hash].css', {disable: !isProd})
-    );
-  }
 
   // Add build specific plugins
   if (isProd) {
@@ -188,13 +156,9 @@ module.exports = function makeWebpackConfig() {
         // Angular 2 is broken again, disabling mangle until beta 6 that should fix the thing
         // Todo: remove this with beta 6
         mangle: false
-      }),
+      })
 
-      // Copy assets from the public folder
-      // Reference: https://github.com/kevlened/copy-webpack-plugin
-      new CopyWebpackPlugin([{
-        from: root('src/public')
-      }])
+
     );
   }
 
