@@ -80,17 +80,17 @@ export function firebaseObjectObservableFactory(ref: firebase.database.Reference
 
 @Injectable()
 export class FirebaseObject extends Object  {
-    public obs: any;
     public $key: string;
     public $ref: any;
     public $value: any;
     constructor(ref: firebase.database.Reference) {
         super();
+        let obs: any;
         this.$key = ref.key;
         this.$ref = () => { return ref.ref; };
         this.$value = null;
-        this.obs = firebaseObjectObservableFactory(ref);
-        this.obs.subscribe((o: any) => {
+        obs = firebaseObjectObservableFactory(ref);
+        obs.subscribe((o: any) => {
             let existingProps = Object.getOwnPropertyNames(this);
             existingProps.forEach((val: string) => {
                 delete this[val];
@@ -135,11 +135,11 @@ export function firebaseArrayObservableFactory(ref: firebase.database.Reference 
 
 @Injectable()
 export class FirebaseArray extends Array {
-    public obs: any;
     constructor(ref: firebase.database.Reference | firebase.database.Query) {
         super();
-        this.obs = firebaseArrayObservableFactory(ref);
-        this.obs.subscribe((items: any) => {
+        let obs: any;
+        obs = firebaseArrayObservableFactory(ref);
+        obs.subscribe((items: any) => {
             this.length = 0;
             Array.prototype.push.apply(this, items);
         });
