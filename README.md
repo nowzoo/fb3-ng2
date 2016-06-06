@@ -39,7 +39,7 @@ npm start
 
 
 # install firebase and fb3-ng2...
-npm i firebase fb3-ng2--save
+npm i firebase fb3-ng2 --save
 
 ```
 
@@ -59,15 +59,54 @@ typings i
 
 ##### Tell the build where to find the Firebase and fb3-ng2 libraries
 
-If you've followed along with the example using the seed project and Webpack, you don't have to configure anything
-*Other build systems may require you to add paths/references/maps to the libraries in various places.  Consult Google to figure out where.*
+If you've followed along with the example using the seed project and Webpack, just add the following to `src/vendor.ts`:
+
+```
+import 'firebase';
+import 'fb3-ng2';
+```
+
+*Other build systems will require you to add paths/references/maps to the libraries in various other places.  Consult Google to figure out where.*
 
 
 ### Use it!
+Add a `DEFAULT_FIREBASE_APP` provider in `src/main.ts`:
+```ts
+//other imports...
 
-### Usage
+// Add these lines  up top...
+import * as firebase from 'firebase';
 
- Create a Firebase application
+// DEFAULT_FIREBASE_APP is an OpaqueToken that we can use to provide the app...
+import {DEFAULT_FIREBASE_APP} from 'fb3-ng2';
+
+// more imports and other stuff...
+
+bootstrap(AppComponent, [
+    // other providers...
+
+    // a factory for getting your application.
+    {
+        provide: DEFAULT_FIREBASE_APP, useFactory: () => {
+            let app: firebase.app.App;
+            try {
+                //this will work if the app is loaded...
+                app = firebase.app();
+            } catch (e) {
+                app = firebase.initializeApp({
+                    apiKey: 'YOUR API KEY',
+                    authDomain: '<your-firebase-app>.firebaseapp.com',
+                    databaseURL: 'https://<your-firebase-app>.firebaseio.com',
+                    storageBucket: '<your-firebase-app>.appspot.com'
+                });
+            }
+            return app;
+        }
+    }
+  ])
+  .catch(err => console.error(err));
+
+```
 
 
 
