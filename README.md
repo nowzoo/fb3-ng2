@@ -25,80 +25,45 @@ Much of this can be easily done (and is perhaps better done) via the SDK itself 
 
 These instructions are based on installing the library for an Angular 2 app built from the [angular2-webpack seed project](https://github.com/preboot/angular2-webpack). If your app uses another seed and build system, such as SystemJS, you will have to modify some of the following.
 
-```
+##### Set up your project
+```bash
 # clone the seed...
 git clone git@github.com:preboot/angular2-webpack.git fb3-ng2-example
 cd fb3-ng2-example
+
 # install the seed dependencies...
 npm i
+
+# make sure it works...
+npm start
+
+
+# install firebase and fb3-ng2...
+npm i firebase fb3-ng2--save
+
 ```
 
-Define Firebase and this library as dependencies. The package is not yet in NPM, so install from the GitHub repo. Add the following two lines to `dependencies` in `package.json`...
-```js
-{
-    "dependencies": {
-      "firebase": "^3.0.3",
-      "firebase-helpers": "git://github.com/nowzoo/firebase-helpers.git#master"
-    }
-}
+##### Add the Firebase SDK 3.x typings
+
+Until official typings are published to a registry, use the [typings found in this gist](https://gist.githubusercontent.com/cdcarson/28399c50b02bf6c507fbf5b7b30daa31/raw/fa089d231ca4253d4715f8161efc6af74c972dfa/firebase-sdk-3-typings.d.ts).  Open up `typings.json` and add the following line to `globalDependencies`.
+
+```json   
+"firebase": "https://gist.githubusercontent.com/cdcarson/28399c50b02bf6c507fbf5b7b30daa31/raw/fa089d231ca4253d4715f8161efc6af74c972dfa/firebase-sdk-3-typings.d.ts"
 ```
 
+Then run:
 ```bash
-npm install
-```
-Install the typings. For now, the Firebase SDK 3.x typings are included as a file in the current package, rather than in a registry. Add the line
-
-```js
-"firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"
-```
- to `typings.json`. The file (for Angular CLI/SystemJS apps) should look something like this:
-
-```js
-{
-  "globalDevDependencies": {
-    "angular-protractor": "registry:dt/angular-protractor#1.5.0+20160425143459",
-    "jasmine": "registry:dt/jasmine#2.2.0+20160412134438",
-    "selenium-webdriver": "registry:dt/selenium-webdriver#2.44.0+20160317120654"
-  },
-  "globalDependencies": {
-    "es6-shim": "registry:dt/es6-shim#0.31.2+20160317120654",
-    "firebase": "file:./node_modules/firebase-helpers/firebase-typings.d.ts"
-  }
-}
-```
-Then run...
-```bash
-typings install
-```
-
-Tell the build about the new dependencies. For Angular CLI/SystemJS apps this is done in `angular-cli-build.js`. Add Firebase and this package:
-
-```js
-/* global require, module */
-
-var Angular2App = require('angular-cli/lib/broccoli/angular2-app');
-
-module.exports = function(defaults) {
-  return new Angular2App(defaults, {
-    vendorNpmFiles: [
-      'systemjs/dist/system-polyfills.js',
-      'systemjs/dist/system.src.js',
-      'zone.js/dist/*.js',
-      'es6-shim/es6-shim.js',
-      'reflect-metadata/*.js',
-      'rxjs/**/*.js',
-      '@angular/**/*.js',
-
-      //add the following...
-      'firebase/**/*.js',
-      'firebase-helpers/dist/app/firebase-service.js'
-    ]
-  });
-};
-
+typings i
 ```
 
 
+##### Tell the build where to find the Firebase and fb3-ng2 libraries
+
+If you've followed along with the example using the seed project and Webpack, you don't have to configure anything
+*Other build systems may require you to add paths/references/maps to the libraries in various places.  Consult Google to figure out where.*
+
+
+### Use it!
 
 ### Usage
 
