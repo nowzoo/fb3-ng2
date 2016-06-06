@@ -1,6 +1,6 @@
 {
   "name": "fb3-ng2",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "license": "MIT",
   "main": "./dist/index.js",
   "typings": "./dist/index.d.ts",
