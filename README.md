@@ -23,7 +23,7 @@ Much of this can be easily done (and is perhaps better done) via the SDK itself 
 
 ### Installation
 
-These instructions are based on installing the library for an Angular 2 app built from the [angular2-webpack seed project](https://github.com/preboot/angular2-webpack). If your app uses another seed and build system, such as SystemJS, you will have to modify some of the following.
+These instructions are based on installing the library for an Angular 2 app built from the [angular2-webpack seed project](https://github.com/preboot/angular2-webpack). If your app uses another seed or build system, such as SystemJS, you will have to modify some of the following.
 
 ##### Set up your project
 ```bash
@@ -70,7 +70,9 @@ import 'fb3-ng2';
 
 
 ### Use it!
+
 Add a `DEFAULT_FIREBASE_APP` provider in `src/main.ts`:
+
 ```ts
 //other imports...
 
@@ -85,15 +87,17 @@ import {DEFAULT_FIREBASE_APP} from 'fb3-ng2';
 bootstrap(AppComponent, [
     // other providers...
 
-    // a factory for getting your application.
+    // add a factory for getting a firebase application instance...
     {
         provide: DEFAULT_FIREBASE_APP, useFactory: () => {
             let app: firebase.app.App;
             try {
-                //this will work if the app is loaded...
+                // this will work if the app already exists...
                 app = firebase.app();
             } catch (e) {
+              // the app does not yet exist, so...
                 app = firebase.initializeApp({
+                  // get this object from the firebase console...
                     apiKey: 'YOUR API KEY',
                     authDomain: '<your-firebase-app>.firebaseapp.com',
                     databaseURL: 'https://<your-firebase-app>.firebaseio.com',
@@ -107,6 +111,81 @@ bootstrap(AppComponent, [
   .catch(err => console.error(err));
 
 ```
+
+Then in a component, instantiate some data. In `src/app/home/home.component.ts`...
+
+```ts
+// add Inject here...
+import { Component, OnInit, Inject } from '@angular/core';
+
+// import firebase and fb3-ng2 stuff...
+import * as firebase from 'firebase';
+import { DEFAULT_FIREBASE_APP, FirebaseObject, FirebaseArray } from 'fb3-ng2';
+
+@Component({
+  selector: 'my-home',
+  template: require('./home.component.html'),
+  styles: [require('./home.component.scss')]
+})
+export class HomeComponent implements OnInit {
+
+  //define some properties...
+  public posts: FirebaseArray;
+  public listOfScalars: FirebaseArray;
+  public anObject: FirebaseObject;
+  public doesntExist: FirebaseObject;
+  public aScalar: FirebaseObject;
+
+
+  //inject the app...
+  constructor(@Inject(DEFAULT_FIREBASE_APP) private fbApp: any) {}
+
+  ngOnInit() {
+    // initialize the data...
+    this.posts = new FirebaseArray(this.fbApp.database().ref('posts'));
+    this.listOfScalars = new FirebaseArray(this.fbApp.database().ref('listOfScalars'));
+    this.anObject = new FirebaseObject(this.fbApp.database().ref('anObject'));
+    this.doesntExist = new FirebaseObject(this.fbApp.database().ref('doesntExist'));
+    this.aScalar = new FirebaseObject(this.fbApp.database().ref('aScalar'));
+  }
+
+}
+
+```
+
+Finally, in `src/app/home/home.component.html`...
+
+```html
+<p>
+  Home Works!
+</p>
+
+<h3>Posts</h3>
+<pre>
+{{ posts | json }}
+</pre>
+
+<h3>A list of scalars</h3>
+<pre>
+{{ listOfScalars | json }}
+</pre>
+
+<h3>An Object</h3>
+<pre>
+{{ anObject | json }}
+</pre>
+
+<h3>A Scalar</h3>
+<pre>
+{{ aScalar | json }}
+</pre>
+
+<h3>Does not exist</h3>
+<pre>
+{{ doesntExist | json }}
+</pre>
+```
+
 
 
 
