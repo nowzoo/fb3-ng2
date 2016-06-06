@@ -23,7 +23,15 @@ Much of this can be easily done (and is perhaps better done) via the SDK itself 
 
 ### Installation
 
-These instructions are based on installing the present library for an Angular 2 app built with the [Angular CLI](https://cli.angular.io/), which uses SystemJS. If your app uses another seed and build system, such as Webpack, you will have to modify some of the following.
+These instructions are based on installing the library for an Angular 2 app built from the [angular2-webpack seed project](https://github.com/preboot/angular2-webpack). If your app uses another seed and build system, such as SystemJS, you will have to modify some of the following.
+
+```
+# clone the seed...
+git clone git@github.com:preboot/angular2-webpack.git fb3-ng2-example
+cd fb3-ng2-example
+# install the seed dependencies...
+npm i
+```
 
 Define Firebase and this library as dependencies. The package is not yet in NPM, so install from the GitHub repo. Add the following two lines to `dependencies` in `package.json`...
 ```js
