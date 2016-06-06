@@ -1,8 +1,9 @@
-# Firebase Helpers
+# fb3-ng2
 
 Angular 2 Helpers for Firebase SDK 3.x
 
-*N.B.: This is in active development, and was originally intended to be a drop-in replacement for the [official angularfire2 library](https://github.com/angular/angularfire2/) until it is updated to [Firebase SDK 3.x](https://github.com/angular/angularfire2/issues/180). Use with care!*
+*N.B.: This library is in active development, so things may change suddenly.
+Also, it was originally intended to be a drop-in replacement for the [official angularfire2 library](https://github.com/angular/angularfire2/) until that library is updated to [Firebase SDK 3.x](https://github.com/angular/angularfire2/issues/180). That library, when ready, may make this one unnecessary.*
 
 ### Overview
 
@@ -21,29 +22,35 @@ This library concentrates on reading data objects and arrays from Firebase 3.x S
 
 Much of this can be easily done (and is perhaps better done) via the SDK itself rather than Angular 2 abstractions. That said, I'm open to suggestions.
 
-### Installation
 
-These instructions are based on installing the library for an Angular 2 app built from the [angular2-webpack seed project](https://github.com/preboot/angular2-webpack). If your app uses another seed or build system, such as SystemJS, you will have to modify some of the following.
+### Installation Instructions
 
-##### Set up your project
+
+#### Install in an existing app...
+
 ```bash
-# clone the seed...
-git clone git@github.com:preboot/angular2-webpack.git fb3-ng2-example
-cd fb3-ng2-example
-
-# install the seed dependencies...
-npm i
-
-# make sure it works...
-npm start
-
-
-# install firebase and fb3-ng2...
 npm i firebase fb3-ng2 --save
-
 ```
 
+
+#### Or clone the example app...
+
+A prebuilt version of an app can be [cloned from fb3-ng2-example](https://github.com/nowzoo/fb3-ng2-example).
+
+```bash
+git clone git@github.com:nowzoo/fb3-ng2-example.git
+cd fb3-ng2-example
+npm i
+```
+
+The following instructions are based on installing the library for an Angular 2 app built from the [angular2-webpack seed project](https://github.com/preboot/angular2-webpack). If your app uses another seed or build system, such as SystemJS, you will have to modify some of the following.
+
 ##### Add the Firebase SDK 3.x typings
+
+```bash
+# install the typings library globally if you don't have it..
+#  npm i typings -g
+```
 
 Until official typings are published to a registry, use the [typings found in this gist](https://gist.githubusercontent.com/cdcarson/28399c50b02bf6c507fbf5b7b30daa31/raw/fa089d231ca4253d4715f8161efc6af74c972dfa/firebase-sdk-3-typings.d.ts).  Open up `typings.json` and add the following line to `globalDependencies`.
 
@@ -59,19 +66,19 @@ typings i
 
 ##### Tell the build where to find the Firebase and fb3-ng2 libraries
 
-If you've followed along with the example using the seed project and Webpack, just add the following to `src/vendor.ts`:
+If you're using the example app with Webpack, just add the following to `src/vendor.ts`:
 
 ```
 import 'firebase';
 import 'fb3-ng2';
 ```
 
-*Other build systems will require you to add paths/references/maps to the libraries in various other places.  Consult Google to figure out where.*
+*Other build systems/seeds will require you to add paths/references/maps to the libraries in various other places.  Consult Google to figure out where.*
 
 
 ### Use it!
 
-Add a `DEFAULT_FIREBASE_APP` provider in `src/main.ts`:
+Add a `DEFAULT_FIREBASE_APP` provider in `src/main.ts`, or wherever you `bootstrap()` your app:
 
 ```ts
 //other imports...
@@ -186,20 +193,27 @@ Finally, in `src/app/home/home.component.html`...
 </pre>
 ```
 
+#### See the results:
+```bash
+npm start
+```
+If you've cloned the example, the app will be available at http://localhost:3002/
 
 
 
 
 ### Contributing
 
+Feel free to make suggestions, post issues and make PRs.
+
 ```bash
 # clone the repo...
-git clone git@github.com:nowzoo/firebase-3-angular-2.git
+git clone git@github.com:nowzoo/fb3-ng2.git
 
 # install dependencies...
 npm install
 
-# install typings globally if you need to..
+# install the typings library globally if you need to..
 #  npm i typings -g
 
 # install typings...
@@ -208,6 +222,13 @@ typings install
 # unit tests...
 npm test
 
+# watch test...
+npm run test-watch
+
 # build...
 npm build
 ```
+
+### License
+
+[MIT](/LICENSE)

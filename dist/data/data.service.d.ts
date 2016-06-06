@@ -36,7 +36,6 @@ export declare function firebaseRecordFactory(snap: firebase.database.DataSnapsh
  */
 export declare function firebaseObjectObservableFactory(ref: firebase.database.Reference): Observable<FirebaseRecord>;
 export declare class FirebaseObject extends Object {
-    obs: any;
     $key: string;
     $ref: any;
     $value: any;
@@ -52,6 +51,5 @@ export declare class FirebaseObject extends Object {
  */
 export declare function firebaseArrayObservableFactory(ref: firebase.database.Reference | firebase.database.Query): Observable<FirebaseRecord[]>;
 export declare class FirebaseArray extends Array {
-    obs: any;
     constructor(ref: firebase.database.Reference | firebase.database.Query);
 }

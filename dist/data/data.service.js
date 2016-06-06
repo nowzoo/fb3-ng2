@@ -51,11 +51,12 @@ var FirebaseObject = (function (_super) {
     function FirebaseObject(ref) {
         var _this = this;
         _super.call(this);
+        var obs;
         this.$key = ref.key;
         this.$ref = function () { return ref.ref; };
         this.$value = null;
-        this.obs = firebaseObjectObservableFactory(ref);
-        this.obs.subscribe(function (o) {
+        obs = firebaseObjectObservableFactory(ref);
+        obs.subscribe(function (o) {
             var existingProps = Object.getOwnPropertyNames(_this);
             existingProps.forEach(function (val) {
                 delete _this[val];
@@ -106,8 +107,9 @@ var FirebaseArray = (function (_super) {
     function FirebaseArray(ref) {
         var _this = this;
         _super.call(this);
-        this.obs = firebaseArrayObservableFactory(ref);
-        this.obs.subscribe(function (items) {
+        var obs;
+        obs = firebaseArrayObservableFactory(ref);
+        obs.subscribe(function (items) {
             _this.length = 0;
             Array.prototype.push.apply(_this, items);
         });
